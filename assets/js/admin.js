@@ -5,10 +5,19 @@
 (function($) {
     'use strict';
 
+    // Prevent multiple initializations
+    if (window.IntegrationAdminInitialized) {
+        return;
+    }
+    window.IntegrationAdminInitialized = true;
+
     // Initialize when document is ready
     $(document).ready(function() {
         console.log('Integration admin script loaded');
         console.log('wp.media available:', typeof wp !== 'undefined' && typeof wp.media !== 'undefined');
+        
+        // Unbind any existing events first
+        $(document).off('.integration-admin');
         
         initializeMediaUploader();
         initializeFeatureRepeater();
@@ -17,6 +26,11 @@
         initializePreview();
         initializeColorPicker();
         initializeFormValidation();
+        initializeAutoSave();
+        initializeCharacterCounter();
+        initializeSortableFeatures();
+        initializeQuickActions();
+        initializeHelpTooltips();
     });
 
     /**
@@ -26,7 +40,7 @@
         let mediaUploader;
 
         // Logo uploader
-        $(document).on('click', '#integration_logo_button', function(e) {
+        $(document).on('click.integration-admin', '#integration_logo_button', function(e) {
             e.preventDefault();
 
             // If the uploader object has already been created, reopen the dialog
@@ -60,7 +74,7 @@
         });
 
         // Logo remover
-        $(document).on('click', '#integration_logo_remove', function(e) {
+        $(document).on('click.integration-admin', '#integration_logo_remove', function(e) {
             e.preventDefault();
             
             $('#integration_logo').val('');
@@ -71,7 +85,7 @@
 
         // Hero logo uploader
         let heroLogoUploader;
-        $(document).on('click', '.upload-logo-btn', function(e) {
+        $(document).on('click.integration-admin', '.upload-logo-btn', function(e) {
             e.preventDefault();
             console.log('Upload logo button clicked');
 
@@ -111,7 +125,7 @@
         });
 
         // Remove hero logo
-        $(document).on('click', '.remove-logo-btn', function(e) {
+        $(document).on('click.integration-admin', '.remove-logo-btn', function(e) {
             e.preventDefault();
             
             $('#integration_hero_site_logo').val('');
@@ -125,7 +139,7 @@
      */
     function initializeFeatureRepeater() {
         // Add new feature
-        $(document).on('click', '#add_feature', function(e) {
+        $(document).on('click.integration-admin', '#add_feature', function(e) {
             e.preventDefault();
 
             const $container = $('#integration_features_container');
@@ -141,7 +155,7 @@
         });
 
         // Remove feature
-        $(document).on('click', '.remove-feature', function(e) {
+        $(document).on('click.integration-admin', '.remove-feature', function(e) {
             e.preventDefault();
             
             $(this).closest('.feature-item').remove();
@@ -169,7 +183,7 @@
     function initializeScreenshotsGallery() {
         let screenshotsUploader;
 
-        $(document).on('click', '#integration_screenshots_button', function(e) {
+        $(document).on('click.integration-admin', '#integration_screenshots_button', function(e) {
             e.preventDefault();
 
             if (screenshotsUploader) {
@@ -213,7 +227,7 @@
         });
 
         // Remove screenshot
-        $(document).on('click', '.remove-screenshot', function(e) {
+        $(document).on('click.integration-admin', '.remove-screenshot', function(e) {
             e.preventDefault();
             
             const $item = $(this).closest('.screenshot-item');
@@ -233,7 +247,7 @@
      * Initialize bulk edit functionality
      */
     function initializeBulkEdit() {
-        $(document).on('click', '#doaction, #doaction2', function(e) {
+        $(document).on('click.integration-admin', '#doaction, #doaction2', function(e) {
             const action = $(this).siblings('select').val();
             
             if (action === 'edit') {
@@ -246,7 +260,7 @@
 
         function initializeBulkEditForm() {
             // Handle bulk edit save
-            $('.bulk-edit-save .button').off('click.integration').on('click.integration', function(e) {
+            $('.bulk-edit-save .button').off('click.integration-admin').on('click.integration-admin', function(e) {
                 const $form = $(this).closest('tr');
                 const postIds = [];
                 
@@ -285,21 +299,21 @@
      * Initialize integration preview
      */
     function initializePreview() {
-        $(document).on('click', '.integration-preview-btn', function(e) {
+        $(document).on('click.integration-admin', '.integration-preview-btn', function(e) {
             e.preventDefault();
             
             const postId = $(this).data('post-id');
             openPreviewModal(postId);
         });
 
-        $(document).on('click', '.integration-preview-close, .integration-preview-modal', function(e) {
+        $(document).on('click.integration-admin', '.integration-preview-close, .integration-preview-modal', function(e) {
             if (e.target === this) {
                 closePreviewModal();
             }
         });
 
         // Escape key to close
-        $(document).on('keydown', function(e) {
+        $(document).on('keydown.integration-admin', function(e) {
             if (e.keyCode === 27 && $('.integration-preview-modal').hasClass('active')) {
                 closePreviewModal();
             }
@@ -379,7 +393,7 @@
      */
     function initializeFormValidation() {
         // Validate required fields before publishing
-        $(document).on('click', '#publish', function(e) {
+        $(document).on('click.integration-admin', '#publish', function(e) {
             let hasErrors = false;
             const errors = [];
 
@@ -440,7 +454,7 @@
         let autoSaveTimeout;
 
         // Auto-save on input change
-        $(document).on('input', '#integration-form input, #integration-form textarea, #integration-form select', function() {
+        $(document).on('input.integration-admin', '#integration-form input, #integration-form textarea, #integration-form select', function() {
             clearTimeout(autoSaveTimeout);
             
             autoSaveTimeout = setTimeout(function() {
@@ -478,7 +492,7 @@
      * Character counter for text areas
      */
     function initializeCharacterCounter() {
-        $(document).on('input', 'textarea[data-max-length]', function() {
+        $(document).on('input.integration-admin', 'textarea[data-max-length]', function() {
             const $textarea = $(this);
             const maxLength = parseInt($textarea.data('max-length'));
             const currentLength = $textarea.val().length;
@@ -523,7 +537,7 @@
      */
     function initializeQuickActions() {
         // Duplicate integration
-        $(document).on('click', '.duplicate-integration', function(e) {
+        $(document).on('click.integration-admin', '.duplicate-integration', function(e) {
             e.preventDefault();
             
             const postId = $(this).data('post-id');
@@ -549,7 +563,7 @@
         });
 
         // Quick status change
-        $(document).on('change', '.quick-status-change', function() {
+        $(document).on('change.integration-admin', '.quick-status-change', function() {
             const $select = $(this);
             const postId = $select.data('post-id');
             const newStatus = $select.val();
@@ -610,15 +624,10 @@
         });
     }
 
-    // Initialize additional features
-    initializeAutoSave();
-    initializeCharacterCounter();
-    initializeSortableFeatures();
-    initializeQuickActions();
-    initializeHelpTooltips();
+    // These functions are now called within the document ready handler above
 
     // Handle media library state
-    $(window).on('beforeunload', function() {
+    $(window).on('beforeunload.integration-admin', function() {
         if (typeof wp !== 'undefined' && wp.media) {
             // Clean up media library instances
         }

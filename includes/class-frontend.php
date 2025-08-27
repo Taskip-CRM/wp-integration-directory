@@ -79,11 +79,13 @@ class WP_Integrations_Directory_Frontend {
             $meta = WP_Integrations_Directory_Post_Type::get_integration_meta($post->ID);
             $logo_url = $meta['logo'] ? wp_get_attachment_url($meta['logo']) : '';
             
+            $description = !empty($meta['description']) ? $meta['description'] : (get_the_excerpt() ?: wp_trim_words(get_the_content(), 20));
+            
             $schema = array(
                 '@context' => 'https://schema.org',
                 '@type' => 'SoftwareApplication',
                 'name' => get_the_title(),
-                'description' => get_the_excerpt() ?: wp_trim_words(get_the_content(), 20),
+                'description' => $description,
                 'url' => get_permalink(),
                 'applicationCategory' => 'WebApplication'
             );
@@ -109,9 +111,10 @@ class WP_Integrations_Directory_Frontend {
             global $post;
             $meta = WP_Integrations_Directory_Post_Type::get_integration_meta($post->ID);
             $logo_url = $meta['logo'] ? wp_get_attachment_url($meta['logo']) : '';
+            $description = !empty($meta['description']) ? $meta['description'] : (get_the_excerpt() ?: wp_trim_words(get_the_content(), 20));
             
             echo '<meta property="og:title" content="' . esc_attr(get_the_title()) . '">' . "\n";
-            echo '<meta property="og:description" content="' . esc_attr(get_the_excerpt() ?: wp_trim_words(get_the_content(), 20)) . '">' . "\n";
+            echo '<meta property="og:description" content="' . esc_attr($description) . '">' . "\n";
             echo '<meta property="og:type" content="website">' . "\n";
             echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '">' . "\n";
             
@@ -284,7 +287,13 @@ class WP_Integrations_Directory_Frontend {
                 </h3>
                 
                 <div class="integration-excerpt">
-                    <?php echo wp_trim_words(get_the_excerpt($post_id) ?: get_the_content(), 15); ?>
+                    <?php 
+                    if (!empty($meta['description'])) {
+                        echo esc_html(wp_trim_words($meta['description'], 15));
+                    } else {
+                        echo wp_trim_words(get_the_excerpt($post_id) ?: get_the_content(), 15);
+                    }
+                    ?>
                 </div>
                 
                 <div class="integration-meta">

@@ -56,12 +56,16 @@ $logo_url = $meta['logo'] ? wp_get_attachment_image_url($meta['logo'], 'medium')
         
         <div class="integration-excerpt">
             <?php 
-            $excerpt = get_the_excerpt($integration_id);
-            if (empty($excerpt)) {
-                $content = get_post_field('post_content', $integration_id);
-                $excerpt = wp_trim_words(strip_shortcodes($content), 15);
+            if (!empty($meta['description'])) {
+                echo esc_html(wp_trim_words($meta['description'], 15));
+            } else {
+                $excerpt = get_the_excerpt($integration_id);
+                if (empty($excerpt)) {
+                    $content = get_post_field('post_content', $integration_id);
+                    $excerpt = wp_trim_words(strip_shortcodes($content), 15);
+                }
+                echo esc_html($excerpt);
             }
-            echo esc_html($excerpt);
             ?>
         </div>
         

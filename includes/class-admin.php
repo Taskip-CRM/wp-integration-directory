@@ -105,26 +105,29 @@ class WP_Integrations_Directory_Admin {
             // Enqueue media uploader
             wp_enqueue_media();
             
-            wp_enqueue_style(
-                'integration-admin-css',
-                WP_INTEGRATIONS_DIRECTORY_PLUGIN_URL . 'assets/css/admin.css',
-                array(),
-                WP_INTEGRATIONS_DIRECTORY_VERSION
-            );
-            
-            wp_enqueue_script(
-                'integration-admin-js',
-                WP_INTEGRATIONS_DIRECTORY_PLUGIN_URL . 'assets/js/admin.js',
-                array('jquery', 'media-upload', 'media-views'),
-                WP_INTEGRATIONS_DIRECTORY_VERSION,
-                true
-            );
-            
-            wp_localize_script('integration-admin-js', 'integrationAdmin', array(
-                'select_logo' => __('Select Logo', 'wp-integrations-directory'),
-                'change_logo' => __('Change Logo', 'wp-integrations-directory'),
-                'select_screenshots' => __('Select Screenshots', 'wp-integrations-directory')
-            ));
+            // Only enqueue if not already enqueued
+            if (!wp_script_is('integration-admin-js', 'enqueued')) {
+                wp_enqueue_style(
+                    'integration-admin-css',
+                    WP_INTEGRATIONS_DIRECTORY_PLUGIN_URL . 'assets/css/admin.css',
+                    array(),
+                    WP_INTEGRATIONS_DIRECTORY_VERSION
+                );
+                
+                wp_enqueue_script(
+                    'integration-admin-js',
+                    WP_INTEGRATIONS_DIRECTORY_PLUGIN_URL . 'assets/js/admin.js',
+                    array('jquery', 'media-upload', 'media-views'),
+                    WP_INTEGRATIONS_DIRECTORY_VERSION,
+                    true
+                );
+                
+                wp_localize_script('integration-admin-js', 'integrationAdmin', array(
+                    'select_logo' => __('Select Logo', 'wp-integrations-directory'),
+                    'change_logo' => __('Change Logo', 'wp-integrations-directory'),
+                    'select_screenshots' => __('Select Screenshots', 'wp-integrations-directory')
+                ));
+            }
         }
     }
     

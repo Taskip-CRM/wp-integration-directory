@@ -73,6 +73,7 @@ class WP_Integrations_Directory_Meta_Boxes {
         wp_nonce_field('integration_meta_box', 'integration_meta_box_nonce');
         
         $logo = get_post_meta($post->ID, '_integration_logo', true);
+        $description = get_post_meta($post->ID, '_integration_description', true);
         $external_url = get_post_meta($post->ID, '_integration_external_url', true);
         $difficulty = get_post_meta($post->ID, '_integration_difficulty', true);
         $setup_time = get_post_meta($post->ID, '_integration_setup_time', true);
@@ -99,6 +100,16 @@ class WP_Integrations_Directory_Meta_Boxes {
                             </div>
                         </div>
                         <p class="description"><?php _e('Upload a logo for this integration. Recommended size: 200x200px.', 'wp-integrations-directory'); ?></p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th scope="row">
+                        <label for="integration_description"><?php _e('Short Description', 'wp-integrations-directory'); ?></label>
+                    </th>
+                    <td>
+                        <textarea id="integration_description" name="integration_description" rows="3" class="large-text" placeholder="<?php _e('Enter a brief description of this integration...', 'wp-integrations-directory'); ?>"><?php echo esc_textarea($description); ?></textarea>
+                        <p class="description"><?php _e('A short description that will appear on integration cards and below the title. Keep it concise and engaging.', 'wp-integrations-directory'); ?></p>
                     </td>
                 </tr>
                 
@@ -247,6 +258,7 @@ class WP_Integrations_Directory_Meta_Boxes {
         // Save all meta fields
         $meta_fields = array(
             'integration_logo',
+            'integration_description',
             'integration_external_url',
             'integration_difficulty',
             'integration_setup_time',
@@ -258,6 +270,8 @@ class WP_Integrations_Directory_Meta_Boxes {
                 $value = $_POST[$field];
                 if ($field === 'integration_external_url') {
                     $value = esc_url_raw($value);
+                } elseif ($field === 'integration_description' || $field === 'integration_requirements') {
+                    $value = sanitize_textarea_field($value);
                 } else {
                     $value = sanitize_text_field($value);
                 }

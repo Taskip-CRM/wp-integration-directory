@@ -88,7 +88,9 @@ $screenshots = $meta['screenshots'] ? $meta['screenshots'] : array();
                         </div>
                         
                         <div class="integration-excerpt">
-                            <?php if (has_excerpt()): ?>
+                            <?php if (!empty($meta['description'])): ?>
+                                <?php echo wp_kses_post(wpautop($meta['description'])); ?>
+                            <?php elseif (has_excerpt()): ?>
                                 <?php the_excerpt(); ?>
                             <?php else: ?>
                                 <?php echo wp_trim_words(get_the_content(), 30); ?>

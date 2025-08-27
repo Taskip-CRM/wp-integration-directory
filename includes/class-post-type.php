@@ -156,6 +156,7 @@ class WP_Integrations_Directory_Post_Type {
     public static function get_integration_meta($post_id) {
         return array(
             'logo' => get_post_meta($post_id, '_integration_logo', true),
+            'description' => get_post_meta($post_id, '_integration_description', true),
             'category' => wp_get_post_terms($post_id, 'integration_category', array('fields' => 'names')),
             'external_url' => get_post_meta($post_id, '_integration_external_url', true),
             'difficulty' => get_post_meta($post_id, '_integration_difficulty', true),
