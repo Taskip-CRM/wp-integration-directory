@@ -1,0 +1,326 @@
+/**
+ * Step-by-Step Guide Block - Editor Styles
+ */
+
+/* Editor Container */
+.wp-block-step-by-step-guide {
+    --accent-color: #0073aa;
+    --step-bg: #ffffff;
+    --step-border: #e0e0e0;
+    --text-color: #333333;
+    --text-light: #666666;
+    border: 2px dashed #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.wp-block-step-by-step-guide:hover {
+    border-color: var(--accent-color);
+}
+
+/* Editor Header */
+.editor-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.editor-header .step-guide-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: var(--text-color);
+}
+
+.editor-header .step-guide-description {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Editor Content */
+.editor-content {
+    margin-bottom: 20px;
+}
+
+/* Step Item in Editor */
+.editor-step-item {
+    background: var(--step-bg);
+    border: 1px solid var(--step-border);
+    border-radius: 12px;
+    margin: 20px 0;
+    padding: 20px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.editor-step-item:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(0, 115, 170, 0.1);
+}
+
+.editor-step-item.is-selected {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.2);
+}
+
+/* Step Controls */
+.step-controls {
+    position: absolute;
+    top: -15px;
+    right: 15px;
+    z-index: 10;
+}
+
+.step-control-buttons {
+    display: flex;
+    gap: 5px;
+    background: white;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.step-control-buttons .components-button {
+    min-width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 12px;
+    padding: 0;
+}
+
+/* Step Header */
+.editor-step-item .step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.editor-step-item .step-number {
+    background: var(--accent-color);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+.editor-step-item .step-title {
+    flex: 1;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.editor-step-item .step-title.is-selected {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Step Content */
+.editor-step-item .step-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.editor-step-item .step-description.is-selected {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Media Controls */
+.step-media-controls {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.step-media-tabs .components-tab-panel__tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.step-media-tabs .components-button {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.step-media-tabs .components-button.active-tab {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.tab-content {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Image Controls */
+.image-controls .selected-image {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.image-controls .selected-image img {
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* Code Controls */
+.code-controls .components-base-control {
+    margin-bottom: 15px;
+}
+
+.code-controls .components-textarea-control__input {
+    font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    background: #f8f8f8;
+}
+
+/* Layout Variations */
+.layout-timeline .editor-step-item {
+    position: relative;
+    margin-left: 30px;
+}
+
+.layout-timeline .editor-step-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--accent-color);
+    opacity: 0.3;
+}
+
+.layout-timeline .step-number {
+    position: absolute;
+    left: -47px;
+    top: 0;
+}
+
+.layout-minimal .step-number {
+    background: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    font-weight: 700;
+}
+
+/* Editor Footer */
+.editor-footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px dashed #e0e0e0;
+}
+
+.add-step-button-inline {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 25px;
+    transition: all 0.2s ease;
+}
+
+.add-step-button-inline:hover {
+    background: #005a87;
+    border-color: #005a87;
+    transform: translateY(-1px);
+}
+
+/* Inspector Controls */
+.components-panel__body .add-step-button {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Responsive Design for Editor */
+@media (max-width: 768px) {
+    .step-controls {
+        position: static;
+        margin-bottom: 15px;
+    }
+    
+    .step-control-buttons {
+        justify-content: center;
+    }
+    
+    .editor-step-item .step-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .layout-timeline .editor-step-item {
+        margin-left: 0;
+    }
+    
+    .layout-timeline .editor-step-item::before,
+    .layout-timeline .step-number {
+        display: none;
+    }
+}
+
+/* Animation for adding/removing steps */
+.editor-step-item {
+    animation: slideInFromBottom 0.3s ease-out;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Color Picker Styling */
+.components-color-picker {
+    margin-top: 10px;
+}
+
+/* Rich Text Focus States */
+.wp-block-step-by-step-guide .rich-text:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Block Toolbar Integration */
+.wp-block-step-by-step-guide.is-selected .block-editor-block-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

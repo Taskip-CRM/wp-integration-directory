@@ -1,0 +1,585 @@
+/**
+ * Admin Styles for WP Integrations Directory
+ */
+
+/* General Admin Styles */
+.wp-admin .integration-admin-header {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.wp-admin .integration-admin-header h1 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.wp-admin .integration-admin-header p {
+    margin: 8px 0 0 0;
+    opacity: 0.9;
+}
+
+/* Meta Box Styles */
+.integration-meta-box .form-table th {
+    padding: 15px 0;
+    width: 150px;
+    font-weight: 600;
+}
+
+.integration-meta-box .form-table td {
+    padding: 15px 0;
+    vertical-align: top;
+}
+
+/* Logo Upload */
+#integration_logo_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#integration_logo_preview img {
+    max-width: 100px;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+
+.integration-logo-placeholder {
+    width: 100px;
+    height: 100px;
+    background: #f0f0f0;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Features Repeater */
+#integration_features_container .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#integration_features_container .feature-item input {
+    flex: 1;
+}
+
+.remove-feature {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-feature:hover {
+    background: #c82333;
+}
+
+#add_feature {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add_feature:hover {
+    background: #218838;
+}
+
+/* Screenshots Gallery */
+#integration_screenshots_container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 4px;
+    background: #fafafa;
+}
+
+#screenshots_preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.screenshot-item {
+    position: relative;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.screenshot-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+}
+
+.remove-screenshot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-screenshot:hover {
+    background: rgba(220, 53, 69, 1);
+}
+
+/* Integration Type Radio Buttons */
+.integration-meta-box fieldset {
+    border: none;
+    padding: 0;
+}
+
+.integration-meta-box fieldset legend {
+    display: none;
+}
+
+.integration-meta-box fieldset label {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 8px;
+    font-weight: normal;
+}
+
+.integration-meta-box fieldset input[type="radio"] {
+    margin-right: 6px;
+}
+
+/* Code Textarea */
+.integration-meta-box .code {
+    font-family: Consolas, Monaco, monospace;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Admin Columns */
+.column-integration_logo {
+    width: 80px;
+}
+
+.column-integration_type {
+    width: 100px;
+}
+
+.column-integration_category {
+    width: 150px;
+}
+
+.column-integration_difficulty {
+    width: 100px;
+}
+
+.column-integration_url {
+    width: 50px;
+}
+
+/* Integration Badges in Admin */
+.integration-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.integration-badge-free {
+    background: #d4edda;
+    color: #155724;
+}
+
+.integration-badge-paid {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.integration-badge-freemium {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Category Admin Styles */
+.term-icon-wrap input,
+.term-color-wrap input {
+    width: 100%;
+    max-width: 300px;
+}
+
+.wp-color-picker {
+    width: 80px !important;
+}
+
+/* Color swatches in category list */
+.column-color span[style*="background-color"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.column-icon .dashicons,
+.column-icon i {
+    font-size: 20px;
+}
+
+/* Settings Page */
+.integration-settings-page .form-table {
+    max-width: 800px;
+}
+
+.integration-settings-page .form-table th {
+    width: 200px;
+    font-weight: 600;
+}
+
+/* Import/Export Page */
+.integration-import-export .card {
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.integration-import-export .card h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.integration-import-export input[type="file"] {
+    margin: 10px 0;
+}
+
+/* Quick Edit Styles */
+.inline-edit-col .integration-quick-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inline-edit-col .integration-quick-edit label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.inline-edit-col .integration-quick-edit .title {
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666;
+}
+
+/* Bulk Edit Styles */
+.bulk-edit .integration-bulk-edit {
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+}
+
+.bulk-edit .integration-bulk-edit label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.bulk-edit .integration-bulk-edit .title {
+    font-weight: 600;
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Admin Notices */
+.integration-admin-notice {
+    position: relative;
+    background: white;
+    border: 1px solid #c3c4c7;
+    border-left: 4px solid #72aee6;
+    border-radius: 0 4px 4px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+}
+
+.integration-admin-notice.notice-success {
+    border-left-color: #00a32a;
+}
+
+.integration-admin-notice.notice-warning {
+    border-left-color: #dba617;
+}
+
+.integration-admin-notice.notice-error {
+    border-left-color: #d63638;
+}
+
+/* Loading States */
+.integration-admin-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0073aa;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Preview Modal */
+.integration-preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999999;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.integration-preview-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.integration-preview-content {
+    background: white;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.integration-preview-header {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    background: #f8f9fa;
+}
+
+.integration-preview-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.integration-preview-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    line-height: 1;
+}
+
+.integration-preview-close:hover {
+    color: #333;
+}
+
+.integration-preview-body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(90vh - 80px);
+}
+
+/* Responsive Admin Styles */
+@media screen and (max-width: 782px) {
+    .integration-meta-box .form-table th,
+    .integration-meta-box .form-table td {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    .integration-meta-box .form-table th {
+        border-bottom: none;
+        font-weight: 600;
+    }
+    
+    .integration-meta-box .form-table td {
+        border-top: none;
+        padding-top: 5px;
+    }
+    
+    #integration_features_container .feature-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    #screenshots_preview {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+    
+    .integration-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .integration-admin-header {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .integration-admin-header h1 {
+        font-size: 1.3rem;
+    }
+    
+    #screenshots_preview {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 8px;
+    }
+    
+    .screenshot-item img {
+        height: 60px;
+    }
+    
+    .integration-preview-modal {
+        padding: 10px;
+    }
+    
+    .integration-preview-content {
+        max-height: 95vh;
+    }
+    
+    .integration-preview-header,
+    .integration-preview-body {
+        padding: 15px;
+    }
+}
+
+/* Dark Mode Support (WordPress 5.7+) */
+@media (prefers-color-scheme: dark) {
+    .wp-admin.wp-core-ui {
+        --integration-admin-bg: #1e1e1e;
+        --integration-admin-text: #e0e0e0;
+        --integration-admin-border: #444;
+    }
+    
+    .integration-meta-box .code {
+        background: #2a2a2a;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+    
+    .integration-logo-placeholder {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #888;
+    }
+    
+    #integration_screenshots_container {
+        background: #2a2a2a;
+        border-color: #444;
+    }
+    
+    .screenshot-item {
+        border-color: #444;
+    }
+}
+
+/* Accessibility Improvements */
+.integration-admin-section {
+    outline: 0;
+}
+
+.integration-admin-section:focus-visible {
+    outline: 2px solid #0073aa;
+    outline-offset: 2px;
+}
+
+.integration-admin-button {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .integration-badge {
+        border: 1px solid currentColor;
+    }
+    
+    .integration-logo-placeholder {
+        border-style: solid;
+        border-width: 2px;
+    }
+    
+    .screenshot-item {
+        border-width: 2px;
+        border-style: solid;
+    }
+}
+
+/* Print Styles for Admin */
+@media print {
+    .integration-preview-close,
+    .integration-admin-actions,
+    .wp-admin .button {
+        display: none !important;
+    }
+    
+    .integration-preview-content {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}
+
+/* Custom Scrollbar for Preview Modal */
+.integration-preview-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.integration-preview-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.integration-preview-body::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.integration-preview-body::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
