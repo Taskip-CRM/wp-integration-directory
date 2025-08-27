@@ -1,0 +1,53 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "wp-integrations-directory/step-by-step-guide",
+    "version": "1.0.0",
+    "title": "Step-by-Step Guide",
+    "category": "widgets",
+    "icon": "list-view",
+    "description": "Create interactive step-by-step integration guides with images and code examples.",
+    "keywords": ["steps", "guide", "tutorial", "integration"],
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"]
+    },
+    "attributes": {
+        "title": {
+            "type": "string",
+            "default": "Step-by-Step Guide"
+        },
+        "description": {
+            "type": "string",
+            "default": ""
+        },
+        "steps": {
+            "type": "array",
+            "default": [
+                {
+                    "id": 1,
+                    "title": "Step 1",
+                    "content": "Enter your step description here.",
+                    "image": "",
+                    "imageAlt": "",
+                    "code": "",
+                    "codeLanguage": "html",
+                    "showCode": false
+                }
+            ]
+        },
+        "layout": {
+            "type": "string",
+            "default": "numbered"
+        },
+        "showNumbers": {
+            "type": "boolean",
+            "default": true
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#0073aa"
+        }
+    },
+    "textdomain": "wp-integrations-directory"
+}

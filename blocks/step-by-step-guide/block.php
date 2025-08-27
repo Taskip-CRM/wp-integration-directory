@@ -38,10 +38,13 @@ class WP_Integrations_Step_By_Step_Block {
      * Register the block
      */
     public function register_block() {
+        // Debug: Check if we're in the right context
+        if (function_exists('register_block_type')) {
+            error_log('WP Integrations Directory: Registering step-by-step-guide block');
+        }
+        
+        // Register block type with all attributes
         register_block_type('wp-integrations-directory/step-by-step-guide', array(
-            'editor_script' => 'step-by-step-guide-editor',
-            'editor_style' => 'step-by-step-guide-editor-style',
-            'style' => 'step-by-step-guide-style',
             'render_callback' => array($this, 'render_block'),
             'attributes' => array(
                 'title' => array(
@@ -49,7 +52,7 @@ class WP_Integrations_Step_By_Step_Block {
                     'default' => 'Step-by-Step Guide'
                 ),
                 'description' => array(
-                    'type' => 'string',
+                    'type' => 'string', 
                     'default' => ''
                 ),
                 'steps' => array(
@@ -90,8 +93,8 @@ class WP_Integrations_Step_By_Step_Block {
         wp_enqueue_script(
             'step-by-step-guide-editor',
             WP_INTEGRATIONS_DIRECTORY_PLUGIN_URL . 'blocks/step-by-step-guide/src/index.js',
-            array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'),
-            WP_INTEGRATIONS_DIRECTORY_VERSION,
+            array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data'),
+            WP_INTEGRATIONS_DIRECTORY_VERSION . '-' . time(), // Cache bust for debugging
             true
         );
         
