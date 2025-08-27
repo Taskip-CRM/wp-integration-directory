@@ -3,7 +3,7 @@
  * Plugin Name: WP Integrations Directory
  * Plugin URI: https://taskip.net/wp-integrations-directory
  * Description: A comprehensive WordPress plugin that creates an integrations directory similar to Ghost's integrations page.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: taskip
  * Author URI: https://taskip.net
  * License: GPL v2 or later
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('WP_INTEGRATIONS_DIRECTORY_VERSION', '1.0.0');
+define('WP_INTEGRATIONS_DIRECTORY_VERSION', '1.1.0');
 define('WP_INTEGRATIONS_DIRECTORY_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('WP_INTEGRATIONS_DIRECTORY_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
