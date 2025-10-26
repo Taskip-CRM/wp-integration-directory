@@ -3,7 +3,7 @@
  * Plugin Name: WP Integrations Directory
  * Plugin URI: https://taskip.net/wp-integrations-directory
  * Description: A comprehensive WordPress plugin that creates an integrations directory similar to Ghost's integrations page.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: taskip
  * Author URI: https://taskip.net
  * License: GPL v2 or later
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('WP_INTEGRATIONS_DIRECTORY_VERSION', '1.1.0');
+define('WP_INTEGRATIONS_DIRECTORY_VERSION', '1.1.1');
 define('WP_INTEGRATIONS_DIRECTORY_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('WP_INTEGRATIONS_DIRECTORY_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
@@ -102,10 +102,6 @@ class WP_Integrations_Directory {
         WP_Integrations_Directory_Frontend::get_instance();
         WP_Integrations_Step_By_Step_Block::get_instance();
         
-        // Debug: Ensure post type is registered (can be removed in production)
-        if (is_admin() && current_user_can('manage_options')) {
-            add_action('admin_notices', array($this, 'debug_post_type_registration'));
-        }
         
         // Fallback: Force admin menu if post type exists but menu doesn't show
         add_action('admin_menu', array($this, 'add_integration_admin_menu'), 20);
@@ -199,59 +195,6 @@ class WP_Integrations_Directory {
         register_taxonomy('integration_category', array('integration'), $args);
     }
     
-    /**
-     * Debug function to check if post type is registered (remove in production)
-     */
-    public function debug_post_type_registration() {
-        // Don't show more than once per hour
-        if (get_transient('wp_integrations_debug_shown')) {
-            return;
-        }
-        
-        echo '<div class="notice notice-info is-dismissible">';
-        echo '<p><strong>WP Integrations Directory Debug Info:</strong></p>';
-        echo '<ul>';
-        
-        // Check if plugin is loaded
-        echo '<li>Plugin loaded: ✓ YES</li>';
-        
-        // Check if post type exists
-        if (post_type_exists('integration')) {
-            echo '<li>Integration post type registered: ✓ YES</li>';
-        } else {
-            echo '<li>Integration post type registered: ✗ NO</li>';
-        }
-        
-        // Check if taxonomy exists
-        if (taxonomy_exists('integration_category')) {
-            echo '<li>Integration taxonomy registered: ✓ YES</li>';
-        } else {
-            echo '<li>Integration taxonomy registered: ✗ NO</li>';
-        }
-        
-        // Check current user capabilities
-        if (current_user_can('edit_posts')) {
-            echo '<li>User can edit posts: ✓ YES</li>';
-        } else {
-            echo '<li>User can edit posts: ✗ NO</li>';
-        }
-        
-        // List all registered post types for comparison
-        $post_types = get_post_types(array('show_ui' => true), 'names');
-        echo '<li>Available post types: ' . implode(', ', $post_types) . '</li>';
-        
-        echo '</ul>';
-        
-        if (!post_type_exists('integration')) {
-            echo '<p><strong>Action Required:</strong> Please deactivate and reactivate the plugin to register the post type.</p>';
-        } else {
-            echo '<p><strong>Success:</strong> The "Integrations" menu should be visible in your admin sidebar.</p>';
-        }
-        
-        echo '</div>';
-        
-        set_transient('wp_integrations_debug_shown', true, 3600); // Show for 1 hour only
-    }
     
     /**
      * Fallback function to add admin menu if post type menu doesn't appear
