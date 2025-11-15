@@ -277,7 +277,7 @@ $screenshots = $meta['screenshots'] ? $meta['screenshots'] : array();
                     $use_external_url = get_option('get_started_use_external_url', '1') == '1';
                     ?>
 
-                        <a href="https://taskip.app?ref=website"
+                        <a href="https://taskip.net/register?ref=integration"
                            class="button button-primary button-block" 
                         >
                             <?php echo esc_html($button_text); ?>
