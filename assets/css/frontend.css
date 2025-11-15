@@ -5,7 +5,7 @@
 
 /* CSS Custom Properties */
 :root {
-    --integration-primary-color: #6366f1;
+    --integration-primary-color: #02b38a;
     --integration-secondary-color: #f59e0b;
     --integration-success-color: #10b981;
     --integration-warning-color: #f59e0b;
@@ -499,8 +499,9 @@
 }
 
 .integration-learn-more:hover {
-    background: #5856eb;
+    background:var(--integration-primary-color);
     transform: translateY(-1px);
+    color: #fff;
 }
 
 .integration-external-link {
@@ -970,11 +971,12 @@
 
 .button-primary {
     background: var(--integration-primary-color);
-    color: white;
+    color: #fff;
 }
 
 .button-primary:hover {
-    background: #5856eb;
+    background: var(--integration-primary-color);
+    color: #fff;
     transform: translateY(-2px);
     box-shadow: var(--integration-box-shadow);
 }
@@ -1441,6 +1443,31 @@
 .lightbox-prev:hover,
 .lightbox-next:hover {
     background: rgba(0, 0, 0, 0.7);
+}
+.integration-content .features-list {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.integration-features .features-list li {
+    padding: 0;
+    align-items: flex-start;
+}
+
+.integration-features .features-list li i {
+    margin-top: 5px;
+}
+
+.integration-features .features-list li + li {
+    margin-top: 15px;
+}
+.integration-content-text h3 {
+    font-weight: 600;
+}
+
+.integration-content-text p {
+    color: #212135;
 }
 
 /* Responsive Design */
